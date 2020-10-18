@@ -1,12 +1,19 @@
 package com.example.demo.web;
 
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.business.Pumpkin;
 
+
 @RestController
 @RequestMapping("/tests")
 public class TestController {
+	private List<Pumpkin> pumpkins = new ArrayList<>();
 
 	@GetMapping("/pumpkin")
 	public Pumpkin makePumpkin() {
@@ -14,4 +21,10 @@ public class TestController {
 		return p;
 	}
 
+	@GetMapping("/pumpkin-1")
+	public Pumpkin makePumpkin(@RequestParam int id,@RequestParam String color,@RequestParam double weight, @RequestParam double height,@RequestParam double width,@RequestParam boolean decorated) {
+		Pumpkin p = new Pumpkin(id,color,weight,height,width,decorated);
+		pumpkins.add(p);
+		return p;
+	}
 }
